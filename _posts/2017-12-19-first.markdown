@@ -1,0 +1,19 @@
+---
+layout: post
+title: github博客开通
+date: 2017-12-11 13:32:20 +0300
+description: 第一篇文章. # Add post description (optional)
+img: i-rest.jpg # Add image post (optional)
+tags: [第一, number one]
+---
+这是我的第一篇文章！
+
+### To-do List
+
+- [x] 已完成
+    - [x] 开通了GitHub的blog
+    - [x] 选择了一个jekyll 模板
+- [ ] 待办
+    - [ ] ==md语言编译器==
+    - [ ] ==md语法学习与发布==
+
