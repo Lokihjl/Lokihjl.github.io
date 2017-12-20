@@ -1,0 +1,30 @@
+---
+layout: post
+title: markdown编辑器
+date: 2017-12-20 10:32:20 +0800
+description: 寻找合适的编辑器.
+img: js-1.png # Add image post (optional)
+tags: [markdown, 编辑器]
+---
+Atom现在为止最适合的编辑器
+
+#markdownPad 2
+
+>具有Windows环境
+>需要注册码，无码功能易报错
+![Error]({{site.baseurl}}/assets/img/mp_error.jpg)
+
+#有道云笔记
+
+>功能很强大
+>组件化与可视化做的比较好
+>不支持导出功能
+>与标准的Markdown语法不太一样
+![有道云]({{site.baseurl}}/assets/img/yun_md.jpg)
+
+
+#Atom
+
+>github开源项目，早期仅支持Mac版本，现在支持Windows与Linux
+>功能特强大，详情功能还需要摸索
+>全英文界面
