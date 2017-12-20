@@ -1,0 +1,89 @@
+---
+layout: post
+title: Atom学习笔记
+date: 2017-12-20 13:32:20 +0800
+description: 记录Atom使用与配置. # Add post description (optional)
+img: Atom.jpg # Add image post (optional)
+tags: [Atom, 笔记]
+---
+Atom学习笔记
+
+# About
+>Atom 是 Github 专门为程序员推出的一个跨平台文本编辑器。具有简洁和直观的图形用户界面，并有很多有趣的特点：支持CSS，HTML，JavaScript等网页编程语言。它支持宏，自动完成分屏功能，集成了文件管理器。
+
+# Base
+
+## 菜单栏-分为六大块
+
+* File --文件的保存打开,项目的保存打开,最后一次的项目加载,关闭及设置中心,以及用户自定义的配置(配置文件,初始化脚本,样式风格,代码片段,快捷键配置文件)等
+
+* Edit — 文件编辑的操作,文件编码格式,及行跳转等
+
+* View — 重载页面,全屏,字体大小的缩放等
+
+* Find — 都是关于查询的 ,跟 Sublime text 极其相似,快捷键基本一样
+
+* Package — 包,就是插件列表的集合点
+
+* Help — 帮助文档,软件更新,协议等
+
+### 设置中心 File=>Settings
+![Settings]({{site.baseurl}}/assets/img/Atom_setting.jpg)
+
+* Settings — 全局设置,可以设置文件的编码,菜单栏是否显示,忽略文件,文档缩进,字体大小,项目主目录等,这个比 sublime text 人性化,简洁明了的配置
+
+* Keybindings — 快捷键配置,默认快捷键都汇总于此了,很方便查询对应的快捷键的功能,也方便修改…人性化
+
+* Packages — 插件管理中心,可以设置插件,删除插件及禁用,无安装功能
+
+* Themes —主题管理中心,可以设置主题(支持鼠标选定,也支持写入配置文件生效),管理主题(删除及在线下载主题)
+
+* Updates — 目前功能只有一个,查询社区包的状态,随时随地的更新已安装的插件,Atom 软件的更新在 HELP 里面
+
+* Install — 目前分为两栏,自上而下,第一部分是搜索(可以搜索社区的插件),下面一部分会展示目前比较流行的插件(可以直接点击下载使用)
+
+* Open Config Folder — 这一块算不上鼠标操作控制,完全是软件的配置文件集合目录
+
+> 配置文件后缀为CSON, 而非JSON，但格式很相似。
+
+# plugins
+
+## 插件 RIB - run in browser
+
+->插件简介: Run in Browser will open the current pane in the default web browser
+
+* Command Palette: rib — 命令面板搜索 rip
+* Keymap: ctrl + alt + r — 默认快捷键(和我一些安装的插件有冲突,也用不惯这么多按键,我直接改 F12 调用了)
+* the current pane must be a .html or .htm file — 该插件目前支持在 html 和 htm 后缀名使用
+
+### 个人 RIB 自定义按键修改–仅供参考
+```
+'atom-text-editor':
+  'f12':'rib:run-in-browser'
+  'ctrl-shift-space':'autocomplete:toggle'
+```
+
+## tree-view-finder
+
+两种安装方法
+-* apm install tree-view-finder
+-* Atom->settings(设置)->install(安装)->搜索tree-view-finder — 推荐
+Windows环境安装报错
+![Error]({{site.baseurl}}/assets/img/plugin_error.jpg)
+
+
+### Table
+|Name|Age|Height|
+|----|---|------|
+|hjl |33 |180   |
+|Loki |33 |180   |
+
+### Java
+
+``` Java
+  Class Test {
+    public static void main(String[] args) {
+      
+    }
+  }
+```
