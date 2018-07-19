@@ -1,0 +1,56 @@
+---
+layout: post
+title: Netty教程1
+date: 2018-07-19 13:32:20 +0800
+description: 认识Netty
+img: ddd.jpg # Add image post (optional)
+tags: [Netty, NIO]
+---
+Netty
+===========
+>Netty 提供异步的、事件驱动的网络应用程序框架和工具，用以快速开发高性能、高可靠性的网络服务器和客户端程序。
+
+Netty是一个NIO客户端 服务端框架。允许快速简单的开发网络应用程序。例如：服务端和客户端之间的协议。它最好的地方在于简化了网络编程规范。例如:TCP和UDP socket服务。
+# 特点
+  * 并发高
+  * 传输快
+  * 封装好
+
+# 详情说明
+  “快速和容易”并不意味着构建的应用程序将遇到可维护性或性能问题。
+  Netty已经仔细设计了从许多协议，如FTP，SMTP，HTTP和各种二进制和基于文本的遗留协议的实现获得的经验。
+  因此，Netty成功地找到了一种方法来实现易于开发，性能，稳定性和灵活性的应用程序。
+
+
+# 高并发
+
+Netty是一款基于NIO（Nonblocking I/O，非阻塞IO）开发的网络通信框架，对比于BIO（Blocking I/O，阻塞IO），他的并发性能得到了很大提高，两张图让你了解BIO和NIO的区别：
+![BIO]({{site.baseurl}}/assets/img/BIO.jpg)
+![NIO]({{site.baseurl}}/assets/img/NIO.jpg)
+
+
+# 传输快
+Netty的传输快其实也是依赖了NIO的一个特性——零拷贝。
+下面传统方式与零拷贝的对比图如下：
+![copy]({{site.baseurl}}/assets/img/copy.jpg)
+![zero_copy]({{site.baseurl}}/assets/img/zero_copy.jpg)
+传统方式拷贝：数据从IO读取到堆内存，中间需要经过Socket缓冲区，就是一个数据会被拷贝两次才能到达他的的终点，如果数据量大，就会造成不必要的资源浪费。
+Zero-copy：  就是在操作数据时, 不需要将数据 buffer 从一个内存区域拷贝到另一个内存区域. 因为少了一次内存的拷贝, 因此 CPU 的效率就得到的提升.
+
+实现Zero-copy 有两种方式： mmap() 和 sendfile()
+
+
+#Netty 关键概念
+
+一、channel
+  * channel 表示一个连接，可以理解为每一个请求，就是一个Channel。
+  * ChannelHandler，核心处理业务就在这里，用于处理业务请求。
+  * ChannelHandlerContext，用于传输业务数据。
+  * ChannelPipeline，用于保存处理过程需要用到的ChannelHandler和ChannelHandlerContext。
+
+如图所示：  
+![channel]({{site.baseurl}}/assets/img/channel.jpg)
+
+二、ByteBuf
+  ByteBuf是一个存储字节的容器，最大特点就是使用方便，它既有自己的读索引和写索引，方便你对整段字节缓存进行读写，也支持get/set，方便你对其中每一个字节进行读写，他的数据结构如下图所示：
+![byteBuf]({{site.baseurl}}/assets/img/byteBuf.jpg)  
