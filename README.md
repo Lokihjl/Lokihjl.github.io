@@ -1,2 +1,2 @@
-# Flexible-Jekyll is a simple and clean theme for Jekyll
+# I'm Loki
 
