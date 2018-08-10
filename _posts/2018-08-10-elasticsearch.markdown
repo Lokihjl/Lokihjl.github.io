@@ -29,12 +29,13 @@ ElasticSearch
  curl -X PUT localhost:9200/weather
 
  返回
+ (```)
  {
  	"acknowledged" : true,
  	"shards_acknowledged" : true,
  	"index" : "weather"
  }
-
+(```)
  删除
 
  curl -X DELETE localhost:9200/weather
@@ -50,6 +51,7 @@ elasticsearch-plugin.bat install https://github.com/medcl/elasticsearch-analysis
 
 ## 测试
 使用PostMan发送PUT请求，请求地址localhost:9200/accounts，请求body如下：
+(```)
 {
   "mappings": {
     "person": {
@@ -73,12 +75,12 @@ elasticsearch-plugin.bat install https://github.com/medcl/elasticsearch-analysis
     }
   }
 }
-
+(```)
 解析：首先新建一个名称为accounts的 Index，里面有一个名称为person的 Type。person有三个字段(user、title、desc)
 上面的analyzer是字段文本的分词器，search_analyzer是搜索词的分词器。ik_max_word分词器是插件ik提供的，可以对文本进行最大数量的分词。
 
 #健康检查
-
+(```)
   "cluster_name" : "elasticsearch",   集群名称
   "status" : "yellow",  green：最健康得状态，说明所有的分片包括备份都可用；yellow ：基本的分片可用，但是备份不可用（或者是没有备份）；red：部分的分片可用，表明分片有一部分损坏。此时执行查询部分数据仍然可以查到，遇到这种情况，还是赶快解决比较好
   "timed_out" : false,
@@ -94,9 +96,10 @@ elasticsearch-plugin.bat install https://github.com/medcl/elasticsearch-analysis
   "number_of_in_flight_fetch" : 0,
   "task_max_waiting_in_queue_millis" : 0,
   "active_shards_percent_as_number" : 50.0
+(```)
 
 #问题
-
+(```)
 {
     "error": {
         "root_cause": [
@@ -110,6 +113,7 @@ elasticsearch-plugin.bat install https://github.com/medcl/elasticsearch-analysis
     },
     "status": 403
 }
+(```)
 原因：
 这是由于ES新节点的数据目录data存储空间不足，导致从master主节点接收同步数据的时候失败，此时ES集群为了保护数据，会自动把索引分片index置为只读read-only
 
