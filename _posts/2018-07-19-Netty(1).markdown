@@ -25,6 +25,7 @@ Netty是一个NIO客户端 服务端框架。允许快速简单的开发网络�
 # 高并发
 
 Netty是一款基于NIO（Nonblocking I/O，非阻塞IO）开发的网络通信框架，对比于BIO（Blocking I/O，阻塞IO），他的并发性能得到了很大提高，两张图让你了解BIO和NIO的区别：
+
 ![BIO]({{site.baseurl}}/assets/img/BIO.jpg)
 ![NIO]({{site.baseurl}}/assets/img/NIO.jpg)
 
@@ -34,6 +35,7 @@ Netty的传输快其实也是依赖了NIO的一个特性——零拷贝。
 下面传统方式与零拷贝的对比图如下：
 ![copy]({{site.baseurl}}/assets/img/copy.jpg)
 ![zero_copy]({{site.baseurl}}/assets/img/zero_copy.jpg)
+
 传统方式拷贝：数据从IO读取到堆内存，中间需要经过Socket缓冲区，就是一个数据会被拷贝两次才能到达他的的终点，如果数据量大，就会造成不必要的资源浪费。
 Zero-copy：  就是在操作数据时, 不需要将数据 buffer 从一个内存区域拷贝到另一个内存区域. 因为少了一次内存的拷贝, 因此 CPU 的效率就得到的提升.
 
