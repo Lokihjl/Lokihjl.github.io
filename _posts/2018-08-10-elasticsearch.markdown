@@ -84,7 +84,10 @@ elasticsearch-plugin.bat install https://github.com/medcl/elasticsearch-analysis
 #健康检查
 ```
   "cluster_name" : "elasticsearch",   集群名称
-  "status" : "yellow",  green：最健康得状态，说明所有的分片包括备份都可用；yellow ：基本的分片可用，但是备份不可用（或者是没有备份）；red：部分的分片可用，表明分片有一部分损坏。此时执行查询部分数据仍然可以查到，遇到这种情况，还是赶快解决比较好
+  "status" : "yellow",  
+  green：最健康得状态，说明所有的分片包括备份都可用；
+  yellow ：基本的分片可用，但是备份不可用（或者是没有备份）；
+  red：部分的分片可用，表明分片有一部分损坏。此时执行查询部分数据仍然可以查到，遇到这种情况，还是赶快解决比较好
   "timed_out" : false,
   "number_of_nodes" : 1,           集群个数
   "number_of_data_nodes" : 1,
