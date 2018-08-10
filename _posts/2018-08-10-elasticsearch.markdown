@@ -42,7 +42,9 @@ ElasticSearch
 
  返回
 
- ```{"acknowledged":true}
+ ```
+ {"acknowledged":true}
+ 
  ```
 
 # 中文分词设置
