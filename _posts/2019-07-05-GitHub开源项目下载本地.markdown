@@ -16,7 +16,7 @@ tags: [不想学GitHub命令 新手 求喷]
   * ![open]({{site.baseurl}}/assets/img/gitClone.jpg)
   * 再然后把需要下载gitHub工程的地址填入，下面的一些信息就会制动补上
   * ![open]({{site.baseurl}}/assets/img/gitlink.jpg)
-  * 接下来就是输入自己的GitHub用户名和密码。（别告诉我没有，你是搞开发的吗？:smile:）
+  * 接下来就是输入自己的GitHub用户名和密码。（别告诉我没有，你是搞开发的吗？ :smile: ）
     下面的图表示与GitHub项目连接成功，并可以看见3个分支。
   * ![open]({{site.baseurl}}/assets/img/gitlinkSuccess.jpg)
   * 点击Next，并选择本地存放代码的地方，如下图：
@@ -24,4 +24,4 @@ tags: [不想学GitHub命令 新手 求喷]
   * 点击完成就让他去下载吧。。。。。。如果下载成功如下图，失败的话那就重新填写地址重搞了 :cry:
   * ![open]({{site.baseurl}}/assets/img/gitSuccessInfo.jpg)
   * 选择这个Git工程然后鼠标左键显示一些菜单，选择"Import Projects"----> "默认Finish"--->等待（项目比较大，是时候拼性能了。）
-  * 然后返回Java界面你会发现有很多工程了，这样表示你成功了! :smirk:
+  * 然后返回Java界面你会发现有很多工程了，这样表示你成功了!  :smirk:
