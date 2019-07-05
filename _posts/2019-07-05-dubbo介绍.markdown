@@ -1,0 +1,61 @@
+---
+layout: post
+title: dubbo介绍
+date: 2019-07-05 13:32:20 +0800
+description: 认识dubbo与dubbo的用途
+img: dubbo.jpg # Add image post (optional)
+tags: [dubbo 微服务 分布式 求喷]
+---
+
+Dubbo
+===========
+>Apache Dubbo是一个基于Java的高性能开源RPC框架。
+
+# 特征
+
+ * 基于透明接口的RPC
+ * 智能负载均衡
+ * 自动服务注册和发现
+ * 可扩展性高
+ * 运行时流量路由
+ * 可视化的服务治理
+
+# 跑起来
+
+* 可以根据官网Demo快速运行起来。
+
+```
+# git clone https://github.com/apache/dubbo-samples.git
+# cd dubbo-samples/dubbo-samples-api
+```
+* 如有不了解git命令的没有关系，请看这里
+
+* 然后我们可以看看这个接口工程的pom文件
+![pom]({{site.baseurl}}/assets/img/dubbo_samples_pom.jpg)
+
+* 定义的接口服务
+```
+package org.apache.dubbo.samples.api;
+
+public interface GreetingsService {
+
+    String sayHi(String name);
+}
+```
+
+* provider看看接口的服务提供者，也是具体实现
+
+```
+package org.apache.dubbo.samples.provider;
+
+import org.apache.dubbo.samples.api.GreetingsService;
+
+public class GreetingsServiceImpl implements GreetingsService {
+    @Override
+    public String sayHi(String name) {
+        return "hi, " + name;
+    }
+}
+```
+
+* 搞
