@@ -3,6 +3,7 @@ layout: post
 title: 分布式事务
 date: 2019-07-08 13:32:20 +0800
 description: springcloud dubbo 分布式事务
+img: txlcn.png
 tags: [分布式事务 求喷]
 ---
 
@@ -41,7 +42,7 @@ tags: [分布式事务 求喷]
 
 ## 总体框架
 
-  ![框架]({{site.baseurl}}/assets/img/tcn_框架.jpg)
+  ![框架]({{site.baseurl}}/assets/img/tcn_框架.png)
 
 ## 解决方案
 
@@ -49,7 +50,7 @@ tags: [分布式事务 求喷]
 
   *  例如存在服务模块A 、B、 C。A模块是mysql作为数据源的服务，B模块是基于redis作为数据源的服务，C模块是基于mongo作为数据源的服务。若需要解决他们的事务一致性就需要针对不同的节点采用不同的方案，并且统一协调完成分布式事务的处理。
 
-  ![方案]({{site.baseurl}}/assets/img/tcn_fangan.jpg)
+  ![方案]({{site.baseurl}}/assets/img/tcn_fangan.png)
 
   * 方案：
 
