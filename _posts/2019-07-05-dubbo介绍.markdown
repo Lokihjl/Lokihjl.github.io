@@ -60,4 +60,115 @@ public class GreetingsServiceImpl implements GreetingsService {
 }
 ```
 
-* 搞
+* 搞起服务的提供者(首先得手zk的环境)
+
+```
+package org.apache.dubbo.samples.provider;
+
+
+import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.RegistryConfig;
+import org.apache.dubbo.config.ServiceConfig;
+import org.apache.dubbo.samples.api.GreetingsService;
+
+import java.util.concurrent.CountDownLatch;
+
+public class Application {
+    private static String zookeeperHost = System.getProperty("zookeeper.address", "127.0.0.1");
+
+    public static void main(String[] args) throws Exception {
+        ServiceConfig<GreetingsService> service = new ServiceConfig<>();
+        service.setApplication(new ApplicationConfig("first-dubbo-provider"));
+        service.setRegistry(new RegistryConfig("zookeeper://" + zookeeperHost + ":2181"));
+        service.setInterface(GreetingsService.class);
+        service.setRef(new GreetingsServiceImpl());
+        service.export();
+
+        System.out.println("dubbo service started");
+        new CountDownLatch(1).await();
+    }
+}
+```
+
+* 如果没有zk环境可以Multicast 注册中心（下面是通过配置文件配置环境） 用 Spring 配置声明暴露服务
+provider.xml：
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="hello-world-app"  />
+
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <dubbo:registry address="multicast://224.5.6.7:1234" /> // ZK配置--->  zookeeper://127.0.0.1:2181
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="org.apache.dubbo.samples.api.GreetingsService" ref="greetingsService" />
+
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="greetingsService" class="org.apache.dubbo.samples.api.GreetingsServiceImpl" />
+</beans>
+```
+
+* Provider.java
+
+```
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Provider {
+    public static void main(String[] args) throws Exception {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"/dubbo/provider.xml"});
+        context.start();
+        System.in.read(); // 按任意键退出
+    }
+}
+```
+
+* 服务消费者 consumer.xml：(通过 Spring 配置引用远程服务)
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="consumer-of-helloworld-app"  />
+
+    <!-- 使用multicast广播注册中心暴露发现服务地址 -->
+    <dubbo:registry address="multicast://224.5.6.7:1234" />  // ZK配置--->  zookeeper://127.0.0.1:2181
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <dubbo:reference id="greetingsService" interface="org.apache.dubbo.samples.api.GreetingsService" />
+</beans>
+```
+
+
+* Consumer.java
+
+```
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.alibaba.dubbo.demo.DemoService;
+
+public class Consumer {
+    public static void main(String[] args) throws Exception {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"/dubbo/consumer.xml"});
+        context.start();
+        GreetingsService greetingsService = (GreetingsService)context.getBean("greetingsService"); // 获取远程服务代理
+        String hello = greetingsService.sayHi("world"); // 执行远程方法
+        System.out.println( hello ); // 显示调用结果
+    }
+}
+
+```
+
+
+* 这样一个基本的流程就可以跑起来了！
