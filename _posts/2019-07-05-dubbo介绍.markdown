@@ -28,8 +28,8 @@ Dubbo
 # git clone https://github.com/apache/dubbo-samples.git
 # cd dubbo-samples/dubbo-samples-api
 ```
-* 如有不了解git命令的没有关系，请看这里
-https://lokihjl.github.io/lokihjl.github.io/GitHub%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E4%B8%8B%E8%BD%BD%E6%9C%AC%E5%9C%B0/
+* 如有不了解git命令的没有关系，[请看这里]
+(https://lokihjl.github.io/lokihjl.github.io/GitHub%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E4%B8%8B%E8%BD%BD%E6%9C%AC%E5%9C%B0/)
 
 * 然后我们可以看看这个接口工程的pom文件
 ![pom]({{site.baseurl}}/assets/img/dubbo_samples_pom.jpg)
